@@ -1,0 +1,15 @@
+
+
+@import "src/theme/colors.scss";
+
+.title-color {
+  color: $title-var;
+}
+
+.completed-color{
+  color:  $completed-var;
+}
+
+.inprogress-color {
+    color: $inprogress-var;
+}

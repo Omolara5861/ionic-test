@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { TodosPage } from './todos.page';
+import { TodoButtonComponent } from './todo-button.component';
 
-describe('TodosPage', () => {
-  let component: TodosPage;
-  let fixture: ComponentFixture<TodosPage>;
+describe('TodoButtonComponent', () => {
+  let component: TodoButtonComponent;
+  let fixture: ComponentFixture<TodoButtonComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodosPage ],
+      declarations: [ TodoButtonComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TodosPage);
+    fixture = TestBed.createComponent(TodoButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

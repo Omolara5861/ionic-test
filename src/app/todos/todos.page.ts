@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TodosService } from '../todos.service';
-import { Todos } from '../todos';
+import { Todos } from '../model/todos';
+import { TodosService } from '../services/todos.service';
+
 
 @Component({
   selector: 'app-todos',
@@ -8,8 +9,8 @@ import { Todos } from '../todos';
   styleUrls: ['./todos.page.scss'],
 })
 export class TodosPage implements OnInit {
-
-    todoList: Todos[];
+  todoList: Todos[];
+  apiError: any;
 
     constructor(private todosService: TodosService) {}
 
@@ -20,6 +21,9 @@ export class TodosPage implements OnInit {
       this.todosService.getTodos().subscribe(res => {
         console.log(res);
         this.todoList = res;
+      },
+      err => {
+        this.apiError = err;
       });
     }
 

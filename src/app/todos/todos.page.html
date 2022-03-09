@@ -16,11 +16,13 @@
           <ion-list>
             <h3>Title</h3>
             <ion-item *ngFor="let todo of todoList">
-              <ion-label>{{todo.title}}</ion-label>
-              <span>Status: {{todo.completed}}</span>
+              <ion-label class="title-color">{{todo.title}}</ion-label>
+              <span [ngClass]="todo.completed === true ? 'completed-color' : 'inprogress-color'">{{ todo.completed === true ? 'Completed' : 'In progress'}}</span>
             </ion-item>
           </ion-list>
-          <ion-button>Reload</ion-button>
+          <app-todo-button [todoList]="todoList"
+          [error]="apiError"
+          ></app-todo-button>
   </ion-card-content>
 </ion-card>
 </ion-content>

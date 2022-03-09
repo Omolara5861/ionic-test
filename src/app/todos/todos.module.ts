@@ -8,7 +8,8 @@ import { TodosPageRoutingModule } from './todos-routing.module';
 
 import { TodosPage } from './todos.page';
 import { HttpClientModule } from '@angular/common/http';
-import { TodosService } from '../todos.service';
+import { TodosService } from '../services/todos.service';
+import { TodoButtonComponent } from '../component/todo-button/todo-button.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { TodosService } from '../todos.service';
     TodosPageRoutingModule,
     HttpClientModule
   ],
-  declarations: [TodosPage],
+  declarations: [TodosPage, TodoButtonComponent],
   providers: [TodosService]
 })
 export class TodosPageModule {}
