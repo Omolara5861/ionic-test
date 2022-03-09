@@ -21,14 +21,19 @@ export class TodosService {
   };
 
   constructor(private http: HttpClient) { }
-
-  //  Handling possible api errors
+  /**
+   *
+   * @remarks
+   * This is the method for handling all possible errors
+   * @if statement - Handles client-side or network error
+   * @else statement - Handles error for fetching from api
+   * @returns Throws a custom error
+   */
   errorHandling(error: HttpErrorResponse) {
-    // Handling client-side or network error
     if(error.error instanceof ErrorEvent) {
       console.error('An error occured: ', error.error.message);
     }
-    // Handling error for fetching from api
+
     else {
       console.error(`Api returned code ${error.status}, and body: ${error}`);
     }
