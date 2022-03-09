@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'todos',
-    loadChildren: () => import('./todos/todos.module').then( m => m.TodosPageModule)
+    loadChildren: () => import('./component/todos/todos.module').then( m => m.TodosPageModule)
   },
 ];
 

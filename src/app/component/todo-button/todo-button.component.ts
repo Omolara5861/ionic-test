@@ -9,13 +9,6 @@ import { Todos } from '../../model/todos';
 })
 export class TodoButtonComponent implements OnInit {
 
-  @Input() reload: BtnState;
-  @Input() loading: BtnState;
-  @Input() loadingAndDelaying: BtnState;
-  @Input() error: BtnState;
-  @Input() todoList: Todos[];
-  @Input() apiErorr: any;
-
   @Output() stateChange = new EventEmitter<string>();
 
     constructor() { }
@@ -25,8 +18,6 @@ export class TodoButtonComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Error Msg:' + this.apiErorr);
-    console.log('TodoList:' + this.todoList);
 
   }
 

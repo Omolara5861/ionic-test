@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Todos } from '../model/todos';
-import { TodosService } from '../services/todos.service';
+import { Todos } from '../../model/todos';
+import { TodosService } from '../../services/todos.service';
 
 
 @Component({
