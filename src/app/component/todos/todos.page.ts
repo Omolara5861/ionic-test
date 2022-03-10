@@ -28,4 +28,9 @@ export class TodosPage implements OnInit {
       });
     }
 
+    reload() {
+      this.loadTodos();
+      this.btnText = BtnState.loading;
+    }
+
 }

@@ -1,1 +1,5 @@
-<ion-button>{{btnText}} {{countDown | number:'2.0-0'}}</ion-button>
+<ion-button
+  [disabled]="btnText === btnState.loading || btnText === btnState.loadedAndDelaying"
+>{{btnText}} &nbsp; <span *ngIf="btnText === 'wait'"> {{countDown | number:'2.0-0'}} secs</span>
+</ion-button>
+

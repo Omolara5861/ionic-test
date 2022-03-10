@@ -19,5 +19,7 @@
           </ion-list>
           </ion-card-content>
         </ion-card>
-      <app-todo-button [btnText]="btnText"></app-todo-button>
+      <app-todo-button [btnText]="btnText"
+        (stateChange)="reload()"
+      ></app-todo-button>
 </ion-content>

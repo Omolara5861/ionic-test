@@ -15,7 +15,7 @@ export class TodoButtonComponent implements OnInit {
 
   @Output() stateChange = new EventEmitter<string>();
   countDown: number;
-
+  btnState = BtnState;
     constructor() { }
 
   loadChanges(val: string) {
@@ -24,9 +24,12 @@ export class TodoButtonComponent implements OnInit {
 
   ngOnInit() {
     const duration = 10; // 10 seconds
-
     interval(1000).pipe(take(duration), map(count => duration - (count + 1))).subscribe(seconds => {
         this.countDown = seconds;
+        if(seconds === 0) {
+          this.btnText = BtnState.loaded;
+        }
     });
+
   }
 }
