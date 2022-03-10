@@ -10,11 +10,14 @@ import { Todos } from '../model/todos';
 })
 export class TodosService {
 
+  /**
+   * @todoUrl variable stores the api endpoint
+   */
   todosUrl = 'https://jsonplaceholder.typicode.com/todos';
-  limit = 10;
 
-
-  // Http Options
+  /**
+   * Header Options
+   */
   httpOptions = {
     headers: new HttpHeaders({
       'content-type': 'application/json'
@@ -39,11 +42,13 @@ export class TodosService {
       console.error(`Api returned code ${error.status}, and body: ${error}`);
     }
 
-    // returning Observable for custom errors
     return throwError ('Some went wrong, please try again later.');
   }
 
-  // Fetching Todo from the web (api)
+  /**
+   *
+   * fetching todos from the api
+   */
   getTodos(): Observable<Todos[]> {
     return this.http.get<Todos[]>(this.todosUrl).pipe(
       map((el) => el.slice(0, 10)),
