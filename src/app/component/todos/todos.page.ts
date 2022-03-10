@@ -46,10 +46,11 @@ export class TodosPage implements OnInit {
       });
     }
 
-    reload(state: any) {
-      this.loadTodos();
+    reload(state: BtnState) {
+      // this.loadTodos();
       this.btnText = state;
       console.log(state);
+
     }
 
 }
