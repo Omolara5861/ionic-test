@@ -39,7 +39,7 @@ export class TodosPage implements OnInit {
       this.todosService.getTodos().subscribe(res => {
         console.log(res);
         this.todoList = res;
-        this.btnText = BtnState.loadedAndDelaying;
+        this.btnText = BtnState.loaded;
       },
       err => {
         this.btnText = BtnState.error;
@@ -47,7 +47,7 @@ export class TodosPage implements OnInit {
     }
 
     reload(state: BtnState) {
-      // this.loadTodos();
+      this.loadTodos();
       this.btnText = state;
       console.log(state);
 

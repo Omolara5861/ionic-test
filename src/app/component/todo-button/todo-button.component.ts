@@ -20,7 +20,7 @@ export class TodoButtonComponent implements OnInit {
    * @Output decorator - sends data to the parent component to carry out an function
    */
   @Input() btnText: BtnState;
-  @Output() stateEvent = new EventEmitter<BtnState>();
+  @Output() statusChange = new EventEmitter<BtnState>();
 
   /**
    *
@@ -46,8 +46,8 @@ export class TodoButtonComponent implements OnInit {
     });
   }
 
-  stateChange(val) {
-    this.stateEvent.emit(val);
+  onStateChange(val: BtnState) {
+    this.statusChange.emit(val);
     this.btnText = val;
   }
 }
