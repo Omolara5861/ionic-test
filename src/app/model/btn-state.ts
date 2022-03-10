@@ -1,6 +1,6 @@
 export enum BtnState {
-  reload = 1,
-  loading,
-  loadedAndDelaying,
-  error
+  loaded =  'reload',
+  loading = 'loading',
+  loadedAndDelaying = 'Wait',
+  error = 'Load Error.Retry'
 }

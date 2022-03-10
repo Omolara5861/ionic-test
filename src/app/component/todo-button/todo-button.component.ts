@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { interval} from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import { BtnState } from '../../model/btn-state';
-import { Todos } from '../../model/todos';
+
 
 @Component({
   selector: 'app-todo-button',
@@ -9,7 +11,10 @@ import { Todos } from '../../model/todos';
 })
 export class TodoButtonComponent implements OnInit {
 
+  @Input() btnText: BtnState;
+
   @Output() stateChange = new EventEmitter<string>();
+  countDown: number;
 
     constructor() { }
 
@@ -18,7 +23,10 @@ export class TodoButtonComponent implements OnInit {
   }
 
   ngOnInit() {
+    const duration = 10; // 10 seconds
 
+    interval(1000).pipe(take(duration), map(count => duration - (count + 1))).subscribe(seconds => {
+        this.countDown = seconds;
+    });
   }
-
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todos } from '../../model/todos';
 import { TodosService } from '../../services/todos.service';
+import { BtnState } from '../../model/btn-state';
 
 
 @Component({
@@ -10,8 +11,7 @@ import { TodosService } from '../../services/todos.service';
 })
 export class TodosPage implements OnInit {
   todoList: Todos[];
-  apiError: any;
-
+  btnText: any;
     constructor(private todosService: TodosService) {}
 
     ngOnInit() {
@@ -21,9 +21,10 @@ export class TodosPage implements OnInit {
       this.todosService.getTodos().subscribe(res => {
         console.log(res);
         this.todoList = res;
+        this.btnText = BtnState.loaded;
       },
       err => {
-        this.apiError = err;
+        this.btnText = BtnState.error;
       });
     }
 

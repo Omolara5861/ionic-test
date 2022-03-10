@@ -10,6 +10,7 @@ import { TodosPage } from './todos.page';
 import { HttpClientModule } from '@angular/common/http';
 import { TodosService } from '../../services/todos.service';
 import { TodoButtonComponent } from '../todo-button/todo-button.component';
+import { TodoComponent } from '../todo/todo.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { TodoButtonComponent } from '../todo-button/todo-button.component';
     TodosPageRoutingModule,
     HttpClientModule
   ],
-  declarations: [TodosPage, TodoButtonComponent],
+  declarations: [TodosPage, TodoButtonComponent, TodoComponent],
   providers: [TodosService]
 })
 export class TodosPageModule {}

@@ -13,14 +13,11 @@
   </ion-card-header>
   <!-- Card Content -->
   <ion-card-content>
-          <ion-list>
-            <h3>Title</h3>
-            <ion-item *ngFor="let todo of todoList">
-              <ion-label class="title-color">{{todo.title}}</ion-label>
-              <span [ngClass]="todo.completed === true ? 'completed-color' : 'inprogress-color'" title="status">{{ todo.completed === true ? 'Completed' : 'In progress'}}</span>
-            </ion-item>
+    <h3>Title</h3>
+          <ion-list *ngFor="let todo of todoList">
+            <app-todo [todo]="todo"></app-todo>
           </ion-list>
-          <app-todo-button></app-todo-button>
-  </ion-card-content>
-</ion-card>
+          </ion-card-content>
+        </ion-card>
+      <app-todo-button [btnText]="btnText"></app-todo-button>
 </ion-content>
