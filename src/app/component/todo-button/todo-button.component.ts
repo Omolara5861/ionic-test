@@ -34,18 +34,34 @@ export class TodoButtonComponent implements OnInit {
    *
    * @remarks
    * This implementation of the count down logic
+   * @countDownMethod method contains the logic for
+   *  the countdown timer.It is called in the @ngOnInit method so that the timer can be initated on pageload
    * @interval the interval at which the countdown runs
    */
   ngOnInit() {
-    const duration = 10; // stores duration of the timer 10 seconds
-    interval(1000).pipe(take(duration), map(count => duration - (count + 1))).subscribe(seconds => {
+      this.countDownMethod();
+  }
+  countDownMethod() {
+    const duration = 11; // stores duration of the timer 10 seconds
+    interval(1000)
+    .pipe(
+      take(duration),
+      map(count => duration - count - 1)
+      )
+      .subscribe(seconds => {
         this.countDown = seconds;
         if(seconds === 0) {
           this.btnText = BtnState.loaded;
         }
     });
   }
-
+  /**
+   * @remarks
+   * sending data from the button component to the todos component
+   * @onStateChange - method is the data sent to the
+   * parent component so that the method can be interacted with in the parent (todos) page. The parameter takes the button
+   *  state as the parameter and it set button text to that state
+   */
   onStateChange(val: BtnState) {
     this.statusChange.emit(val);
     this.btnText = val;

@@ -3,7 +3,6 @@ import { Todos } from '../../model/todos';
 import { TodosService } from '../../services/todos.service';
 import { BtnState } from '../../model/btn-state';
 
-
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.page.html',
@@ -39,18 +38,28 @@ export class TodosPage implements OnInit {
       this.todosService.getTodos().subscribe(res => {
         console.log(res);
         this.todoList = res;
-        this.btnText = BtnState.loaded;
+        this.btnText = BtnState.loadedAndDelaying;
       },
       err => {
         this.btnText = BtnState.error;
       });
     }
 
+    /**
+     * @remarks
+     * These two methods performs similar tasks
+     * @reload method - recieves state event from
+     * the child component (button component) it has parameter that the child component uses to emit different states of the button
+     * @reloadPage method - reloads the page,
+     *  it is called in the reload method so as to restart the countdown timer for the'loadedAndDelaying' button state
+     */
     reload(state: BtnState) {
-      this.loadTodos();
+      this.reloadPage();
       this.btnText = state;
       console.log(state);
-
     }
 
+    reloadPage() {
+      window.location.reload();
+    }
 }

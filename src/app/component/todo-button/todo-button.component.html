@@ -1,6 +1,6 @@
 <div class="btn-container">
   <ion-button
-    (click)="onStateChange(btnState.loadedAndDelaying)"
+    (click)="onStateChange(btnState.loading)"
     [disabled]="btnText === btnState.loading || btnText === btnState.loadedAndDelaying"
   >{{btnText}} &nbsp; <span *ngIf="btnText === 'wait'"> {{countDown | number:'2.0-0'}} secs</span>
   </ion-button>
