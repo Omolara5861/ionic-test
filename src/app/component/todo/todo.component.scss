@@ -1,14 +1,13 @@
 
-@import "src/theme/colors.scss";
 
 .title-color {
-  color: $title-var;
+  color: var(--ion-color-todos);
 }
 
 .completed-color{
-  color:  $completed-var;
+  color:  var(--ion-color-todo-in-progress);
 }
 
 .inprogress-color {
-    color: $inprogress-var;
+    color: var(--ion-color-todo-completed);
 }

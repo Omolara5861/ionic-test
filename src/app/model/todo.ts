@@ -3,7 +3,7 @@ export enum TodoStatus {
   inProgress = 'in-progress'
 }
 
-export interface Todos {
+export interface Todo {
     title: string;
     completed: boolean;
     status: TodoStatus;

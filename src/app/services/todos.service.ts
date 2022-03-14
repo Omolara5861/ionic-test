@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Todos } from '../model/todos';
+import { Todo } from '../model/todo';
 
 
 @Injectable({
@@ -26,12 +26,7 @@ export class TodosService {
 
   constructor(private http: HttpClient) { }
   /**
-   *
-   * @remarks
    * This is the method for handling all possible errors
-   * @if statement - Handles client-side or network error
-   * @else statement - Handles error for fetching from api
-   * @returns Throws a custom error
    */
   errorHandling(error: HttpErrorResponse) {
     if(error.error instanceof ErrorEvent) {
@@ -46,11 +41,10 @@ export class TodosService {
   }
 
   /**
-   *
    * fetching todos from the api
    */
-  getTodos(): Observable<Todos[]> {
-    return this.http.get<Todos[]>(this.todosUrl).pipe(
+  getTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(this.todosUrl).pipe(
       map((el) => el.slice(0, 10)),
       catchError(this.errorHandling)
     );

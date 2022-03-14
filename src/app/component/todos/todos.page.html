@@ -6,20 +6,21 @@
 
 <ion-content>
 <!-- All Todo Lists -->
-<ion-card>
-  <!-- Card Header -->
-  <ion-card-header>
-    <ion-card-title class="ion-text-start">All Todo Lists</ion-card-title>
-  </ion-card-header>
-  <!-- Card Content -->
-  <ion-card-content>
-    <h3>Title</h3>
-          <ion-list *ngFor="let todo of todoList">
-            <app-todo [todo]="todo"></app-todo>
-          </ion-list>
-          </ion-card-content>
-        </ion-card>
-      <app-todo-button [btnText]="btnText"
-        (statusChange)="reload($event)"
-      ></app-todo-button>
+  <ion-card>
+    <!-- Card Header -->
+    <ion-card-header>
+      <ion-card-title class="ion-text-start">All Todo Lists</ion-card-title>
+    </ion-card-header>
+    <!-- Card Content -->
+    <ion-card-content>
+      <h3>Title</h3>
+      <ion-list *ngFor="let todo of todoList">
+        <app-todo [todo]="todo"></app-todo>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <app-todo-button
+    [btnState$]="btnState$"
+    (statusChange)="getBtnState($event)"
+  ></app-todo-button>
 </ion-content>

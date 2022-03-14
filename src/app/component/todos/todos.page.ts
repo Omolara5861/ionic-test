@@ -1,65 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { Todos } from '../../model/todos';
-import { TodosService } from '../../services/todos.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { BtnState } from '../../model/btn-state';
+import { Todo } from '../../model/todo';
+import { TodosService } from '../../services/todos.service';
 
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.page.html',
   styleUrls: ['./todos.page.scss'],
 })
-export class TodosPage implements OnInit {
+export class TodosPage implements OnInit, OnDestroy {
+  /**
+   * Todos to display
+   */
+  todoList: Todo[];
+  /**
+   * BehaviorSubject to manage the state between Todos and TodoButton component
+   */
+  btnState$: BehaviorSubject<BtnState> = new BehaviorSubject<BtnState>(BtnState.loading);
+  constructor(
+    private todosService: TodosService,
+  ) {}
+
+  ngOnInit() {
+  }
 
   /**
+   * Gets the state of the button from the TodoButton component
    *
-   * Variables
+   * @param btnState
    */
-  todoList: Todos[];
-  btnText: any;
-    constructor(private todosService: TodosService) {}
-
-    ngOnInit() {
-      // Calling the method immediatly the page loads
+  getBtnState(btnState) {
+    if (btnState === BtnState.loading) {
+      this.todoList = [];
       this.loadTodos();
-      // this.reload(BtnState.error);
     }
+  }
 
-    /**
-     * @remarks
-     * This method gets the response fetched from the api
-     * @todoService access the get method in the service file
-     * @subscribe method - subscribes to the method fetching this todos, it has 2 params,
-     * the 'res' param which is the api response is assigned ti the todoList array and
-     * changes the button text to reload upon successful response
-     * The 'err' param catches the error the api might throw and set the button text
-     * to the correct label
-     */
-    loadTodos() {
-      this.todosService.getTodos().subscribe(res => {
-        console.log(res);
-        this.todoList = res;
-        this.btnText = BtnState.loadedAndDelaying;
-      },
-      err => {
-        this.btnText = BtnState.error;
-      });
-    }
+  /**
+   * Fetches the todolist from API and emits it
+   * for it to be displayed by the parent TodosComponent
+   */
+  loadTodos() {
+    this.todosService.getTodos()
+      .subscribe(
+        (res: Todo[]) => {
+          this.todoList = res;
+          this.btnState$.next(BtnState.loadedAndDelaying);
+        },
+        (err) => {
+          this.btnState$.next(BtnState.error);
+        }
+      );
+  }
 
-    /**
-     * @remarks
-     * These two methods performs similar tasks
-     * @reload method - recieves state event from
-     * the child component (button component) it has parameter that the child component uses to emit different states of the button
-     * @reloadPage method - reloads the page,
-     *  it is called in the reload method so as to restart the countdown timer for the'loadedAndDelaying' button state
-     */
-    reload(state: BtnState) {
-      this.reloadPage();
-      this.btnText = state;
-      console.log(state);
-    }
-
-    reloadPage() {
-      window.location.reload();
-    }
+  ngOnDestroy() {
+    this.btnState$.complete();
+  }
 }

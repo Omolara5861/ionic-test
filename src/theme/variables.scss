@@ -74,6 +74,12 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** Todos Custom Color **/
+  --ion-color-todos: #1325ed;
+  --ion-color-todo-in-progress:  #de2a1d;
+  --ion-color-todo-completed: #15e623;
+
 }
 
 @media (prefers-color-scheme: dark) {
